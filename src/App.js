@@ -5,6 +5,7 @@ import Posts from "./components/posts";
 import Albums from "./components/albums";
 import Users from "./components/users";
 import Navbar from "./components/navbar";
+import Todos from "./components/todos";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/albums" element={<Albums />} />
+          <Route path="/todos" element={<Todos />} />
         </Routes>
       </div>
     </div>

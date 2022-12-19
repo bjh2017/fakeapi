@@ -2,7 +2,7 @@ import _ from "lodash";
 
 const Table = ({ data, columns }) => {
   return (
-    <table class="table">
+    <table className="table">
       <thead>
         <tr>
           {columns.map((col) => (

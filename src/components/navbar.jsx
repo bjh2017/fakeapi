@@ -8,6 +8,7 @@ const Navbar = () => {
     { to: "/users", label: "Users" },
     { to: "/posts", label: "Posts" },
     { to: "/albums", label: "Albums" },
+    { to: "/todos", label: "ToDo List" },
   ];
 
   return (
