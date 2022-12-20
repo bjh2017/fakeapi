@@ -47,83 +47,13 @@ const User = (props) => {
       {user ? (
         <div className="row">
           <div id="UserInfo" className="col-4">
-            {/* info */}
-            <div className="card mb-3">
-              <div className="card-header">
-                <h4>User Info</h4>
-              </div>
-              <ul className="list-group list-group-flush">
-                {/* {Object.keys(user).map((key) => (
-                <li className="list-group-item">{user[key] || key}</li>
-              ))} */}
-                <li className="list-group-item">{id}</li>
-                <li className="list-group-item">{user.name}</li>
-                <li className="list-group-item">{user.username}</li>
-                <li className="list-group-item">{user.email}</li>
-                <li className="list-group-item">{user.phone}</li>
-              </ul>
-            </div>
-            {/* todo list */}
-            <div className="card">
-              <div className="card-header">
-                <h4>Todo List</h4>
-              </div>
-              <ul className="list-group list-group-flush">
-                {todos.map((todo) => (
-                  <li key={todo.id} className="list-group-item">
-                    <input
-                      type="checkbox"
-                      className="form-check-input me-3"
-                      checked={todo.completed}
-                      onClick={() => handleCheck(todo)}
-                      style={{ cursor: "pointer" }}
-                    />
-                    <span
-                      className={
-                        todo.completed && "text-decoration-line-through"
-                      }
-                      style={{ cursor: "pointer" }}
-                      onClick={() => handleCheck(todo)}
-                    >
-                      {todo.title}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {user && userInfo(id, user)}
+            <TodoList todos={todos} handleCheck={handleCheck} />
           </div>
           <div id="userPosts" className="col-4">
-            <h4>Posts</h4>
-            {posts &&
-              posts.map((post) => (
-                <div key={post.id} className="card mb-3">
-                  <img
-                    src="https://picsum.photos/200/100"
-                    className="card-img-top"
-                    alt="..."
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{post.title}</h5>
-                    <p className="card-text">{post.body}</p>
-                    <a href="#" className="btn btn-primary">
-                      View Post
-                    </a>
-                  </div>
-                </div>
-              ))}
+            {posts && userPosts(posts)}
           </div>
-          <div className="col-4">
-            <div className="card mb-3">
-              <div className="card-header">
-                <h4>Albums</h4>
-              </div>
-              <ul className="list-group list-group-flush">
-                {albums.map((album) => (
-                  <li className="list-group-item">{album.title}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <div className="col-4">{albums && userAlbums(albums)}</div>
         </div>
       ) : (
         <Spinner />
@@ -133,3 +63,91 @@ const User = (props) => {
 };
 
 export default User;
+
+function userAlbums(albums) {
+  return (
+    <div className="card mb-3">
+      <div className="card-header">
+        <h4>Albums</h4>
+      </div>
+      <ul className="list-group list-group-flush">
+        {albums.map((album) => (
+          <li className="list-group-item">{album.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function userPosts(posts) {
+  return (
+    <>
+      <h4>Posts</h4>
+      {posts &&
+        posts.map((post) => (
+          <div key={post.id} className="card mb-3">
+            <img
+              src="https://picsum.photos/200/100"
+              className="card-img-top"
+              alt="..."
+            />
+            <div className="card-body">
+              <h5 className="card-title">{post.title}</h5>
+              <p className="card-text">{post.body}</p>
+              <a href="#" className="btn btn-primary">
+                View Post
+              </a>
+            </div>
+          </div>
+        ))}
+    </>
+  );
+}
+
+function TodoList({ todos, handleCheck }) {
+  if (!todos) return null;
+  return (
+    <div className="card">
+      <div className="card-header">
+        <h4>Todo List</h4>
+      </div>
+      <ul className="list-group list-group-flush">
+        {todos.map((todo) => (
+          <li key={todo.id} className="list-group-item">
+            <input
+              type="checkbox"
+              className="form-check-input me-3"
+              checked={todo.completed}
+              onClick={() => handleCheck(todo)}
+              style={{ cursor: "pointer" }}
+            />
+            <span
+              className={todo.completed && "text-decoration-line-through"}
+              style={{ cursor: "pointer" }}
+              onClick={() => handleCheck(todo)}
+            >
+              {todo.title}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function userInfo(id, user) {
+  return (
+    <div className="card mb-3">
+      <div className="card-header">
+        <h4>User Info</h4>
+      </div>
+      <ul className="list-group list-group-flush">
+        <li className="list-group-item">{id}</li>
+        <li className="list-group-item">{user.name}</li>
+        <li className="list-group-item">{user.username}</li>
+        <li className="list-group-item">{user.email}</li>
+        <li className="list-group-item">{user.phone}</li>
+      </ul>
+    </div>
+  );
+}
