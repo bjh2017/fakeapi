@@ -19,14 +19,14 @@ const Todos = () => {
     { path: "title", label: "Title" },
     { path: "completed", label: "Completed?" },
     { path: "userId", label: "User" },
-    // {
-    //   label: "Actions",
-    //   content: (item) => (
-    //     <button className="btn btn-danger" onClick={() => handleDelete(item)}>
-    //       Delete
-    //     </button>
-    //   ),
-    // },
+    {
+      label: "Actions",
+      content: (item) => (
+        <button className="btn btn-danger" onClick={() => handleDelete(item)}>
+          Delete
+        </button>
+      ),
+    },
   ];
 
   const handleDelete = (item) => {
@@ -39,7 +39,7 @@ const Todos = () => {
       <h1>Todos Page</h1>
       {todos ? (
         <>
-          <Table columns={columns} data={paginatedData} />
+          {/* <Table columns={columns} data={paginatedData} /> */}
           <Pagination setPaginatedData={setPaginatedData} data={todos} />
         </>
       ) : (

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Spinner from "./common/spinner";
 import Table from "./common/table";
 import Pagination from "./common/pagination";
+import { Link } from "react-router-dom";
 
 const Users = () => {
   const [users, setUsers] = useState(null);
@@ -22,9 +23,17 @@ const Users = () => {
     {
       label: "Actions",
       content: (item) => (
-        <button className="btn btn-danger" onClick={() => handleDelete(item)}>
-          Delete
-        </button>
+        <>
+          <button
+            className="btn btn-danger me-2"
+            onClick={() => handleDelete(item)}
+          >
+            Delete
+          </button>
+          <Link className="btn btn-primary " to={`/users/${item.id}`}>
+            View
+          </Link>
+        </>
       ),
     },
   ];

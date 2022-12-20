@@ -6,6 +6,7 @@ import Albums from "./components/albums";
 import Users from "./components/users";
 import Navbar from "./components/navbar";
 import Todos from "./components/todos";
+import User from "./components/user";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/users/:id" element={<User />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/albums" element={<Albums />} />
           <Route path="/todos" element={<Todos />} />
