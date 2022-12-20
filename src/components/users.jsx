@@ -19,7 +19,20 @@ const Users = () => {
     { path: "username", label: "User" },
     { path: "email", label: "E-mail" },
     { path: "phone", label: "Mobile" },
+    {
+      label: "Actions",
+      content: (item) => (
+        <button className="btn btn-danger" onClick={() => handleDelete(item)}>
+          Delete
+        </button>
+      ),
+    },
   ];
+
+  const handleDelete = (item) => {
+    const newData = users.filter((user) => user.id !== item.id);
+    setUsers(newData);
+  };
 
   return (
     <>

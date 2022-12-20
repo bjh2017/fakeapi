@@ -19,7 +19,20 @@ const Posts = () => {
     { path: "title", label: "Title" },
     { path: "body", label: "Body" },
     { path: "userId", label: "User" },
+    {
+      label: "Actions",
+      content: (item) => (
+        <button className="btn btn-danger" onClick={() => handleDelete(item)}>
+          Delete
+        </button>
+      ),
+    },
   ];
+
+  const handleDelete = (item) => {
+    const newData = posts.filter((post) => post.id !== item.id);
+    setPosts(newData);
+  };
 
   return (
     <>

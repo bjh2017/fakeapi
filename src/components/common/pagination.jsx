@@ -12,7 +12,7 @@ const Pagination = ({ data, setPaginatedData }) => {
 
   useEffect(() => {
     handlePagination(currentPage);
-  }, []);
+  }, [data]);
 
   const handlePagination = (page, items = data) => {
     const elements = paginate(items, pageSize, page);
@@ -29,7 +29,6 @@ const Pagination = ({ data, setPaginatedData }) => {
   return (
     <nav>
       <ul className="pagination">
-        {/* previous button */}
         <li className="page-item">
           <a
             className={currentPage < 2 ? "page-link disabled" : "page-link"}
@@ -39,8 +38,6 @@ const Pagination = ({ data, setPaginatedData }) => {
             Previous
           </a>
         </li>
-        {/* previous button */}
-
         {pages.map((page) => (
           <li key={page} className="page-item">
             <a
@@ -54,8 +51,6 @@ const Pagination = ({ data, setPaginatedData }) => {
             </a>
           </li>
         ))}
-
-        {/* next button */}
         <li className="page-item">
           <a
             className={
@@ -67,7 +62,6 @@ const Pagination = ({ data, setPaginatedData }) => {
             Next
           </a>
         </li>
-        {/* next button */}
       </ul>
     </nav>
   );

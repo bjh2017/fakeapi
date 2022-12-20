@@ -13,10 +13,10 @@ const Table = ({ data, columns }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((d) => (
-          <tr key={d.id}>
+        {data.map((item) => (
+          <tr key={item.id}>
             {columns.map((col) => (
-              <td>{_.get(d, col.path)}</td>
+              <td>{_.get(item, col.path) || col.content(item)}</td>
             ))}
           </tr>
         ))}

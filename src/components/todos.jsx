@@ -19,7 +19,20 @@ const Todos = () => {
     { path: "title", label: "Title" },
     { path: "completed", label: "Completed?" },
     { path: "userId", label: "User" },
+    // {
+    //   label: "Actions",
+    //   content: (item) => (
+    //     <button className="btn btn-danger" onClick={() => handleDelete(item)}>
+    //       Delete
+    //     </button>
+    //   ),
+    // },
   ];
+
+  const handleDelete = (item) => {
+    const newData = todos.filter((todo) => todo.id !== item.id);
+    setTodos(newData);
+  };
 
   return (
     <>
