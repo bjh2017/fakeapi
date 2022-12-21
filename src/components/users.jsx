@@ -3,6 +3,7 @@ import Spinner from "./common/spinner";
 import Table from "./common/table";
 import Pagination from "./common/pagination";
 import { Link } from "react-router-dom";
+import UserForm from "./userForm";
 
 const Users = () => {
   const [users, setUsers] = useState(null);
@@ -46,14 +47,21 @@ const Users = () => {
   return (
     <>
       <h1>Users page</h1>
-      {users ? (
-        <>
-          <Table columns={columns} data={paginatedData} />
-          <Pagination setPaginatedData={setPaginatedData} data={users} />
-        </>
-      ) : (
-        <Spinner />
-      )}
+      <div className="row">
+        <div className="col-8">
+          {users ? (
+            <>
+              <Table columns={columns} data={paginatedData} />
+              <Pagination setPaginatedData={setPaginatedData} data={users} />
+            </>
+          ) : (
+            <Spinner />
+          )}
+        </div>
+        <div className="col-4">
+          <UserForm data={users} setData={setUsers} />
+        </div>
+      </div>
     </>
   );
 };
