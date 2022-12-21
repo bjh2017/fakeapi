@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Spinner from "./common/spinner";
 
 const User = (props) => {
@@ -94,9 +94,9 @@ function userPosts(posts) {
             <div className="card-body">
               <h5 className="card-title">{post.title}</h5>
               <p className="card-text">{post.body}</p>
-              <a href="#" className="btn btn-primary">
+              <Link to={`/posts/${post.id}`} className="btn btn-primary">
                 View Post
-              </a>
+              </Link>
             </div>
           </div>
         ))}
