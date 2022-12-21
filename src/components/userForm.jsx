@@ -1,6 +1,6 @@
 import useForm from "../hooks/useForm";
 
-const UserForm = ({ data, setData }) => {
+const UserForm = ({ data, setData, selectedItem }) => {
   const initialState = {
     id: null,
     name: "",
@@ -12,7 +12,7 @@ const UserForm = ({ data, setData }) => {
     initialState,
     data,
     setData,
-    ""
+    selectedItem
   );
 
   return (

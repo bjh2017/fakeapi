@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const useForm = (initialState, data, setData, selectedItem) => {
   const [values, setValues] = useState(initialState);
+
+  useEffect(() => {
+    if (selectedItem) setValues(selectedItem);
+  }, [selectedItem]);
 
   const handleInput = (e) => {
     const newValues = { ...values };
@@ -11,8 +16,25 @@ const useForm = (initialState, data, setData, selectedItem) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    let valid = true;
+
+    Object.keys(values).forEach((key) => {
+      if (key !== "id" && values[key].length < 3) valid = false;
+    });
+
+    if (!valid) {
+      toast.error("All Fields are Required!", { theme: "colored" });
+      return;
+    }
+
     if (values.id) {
       // edit
+      const index = data.findIndex((d) => d.id === values.id);
+      const newData = [...data];
+      newData[index] = values;
+      setData(newData);
+      toast.success("User is updated successfuly...", { theme: "colored" });
     } else {
       // add
       const newValues = { ...values };
@@ -20,6 +42,7 @@ const useForm = (initialState, data, setData, selectedItem) => {
       newValues.id = id;
       console.log(newValues);
       setData([newValues, ...data]);
+      toast.success("User is added successfuly...", { theme: "colored" });
     }
     setValues(initialState);
   };

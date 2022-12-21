@@ -8,6 +8,7 @@ import Navbar from "./components/navbar";
 import Todos from "./components/todos";
 import User from "./components/user";
 import Post from "./components/post";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/albums" element={<Albums />} />
           <Route path="/todos" element={<Todos />} />
         </Routes>
+        <ToastContainer />
       </div>
     </div>
   );

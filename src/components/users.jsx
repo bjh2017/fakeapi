@@ -4,9 +4,11 @@ import Table from "./common/table";
 import Pagination from "./common/pagination";
 import { Link } from "react-router-dom";
 import UserForm from "./userForm";
+import { toast } from "react-toastify";
 
 const Users = () => {
   const [users, setUsers] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [paginatedData, setPaginatedData] = useState([]);
 
   useEffect(() => {
@@ -26,10 +28,16 @@ const Users = () => {
       content: (item) => (
         <>
           <button
-            className="btn btn-danger me-2"
+            className="btn btn-danger m-2"
             onClick={() => handleDelete(item)}
           >
             Delete
+          </button>
+          <button
+            className="btn btn-warning m-2"
+            onClick={() => setSelectedItem(item)}
+          >
+            Edit
           </button>
           <Link className="btn btn-primary " to={`/users/${item.id}`}>
             View
@@ -42,6 +50,7 @@ const Users = () => {
   const handleDelete = (item) => {
     const newData = users.filter((user) => user.id !== item.id);
     setUsers(newData);
+    toast.warning("User is deleted successfully...", { theme: "colored" });
   };
 
   return (
@@ -59,7 +68,11 @@ const Users = () => {
           )}
         </div>
         <div className="col-4">
-          <UserForm data={users} setData={setUsers} />
+          <UserForm
+            data={users}
+            setData={setUsers}
+            selectedItem={selectedItem}
+          />
         </div>
       </div>
     </>
