@@ -3,6 +3,7 @@ import Spinner from "./common/spinner";
 import Table from "./common/table";
 import Pagination from "./common/pagination";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 
 const Posts = () => {
   const [posts, setPosts] = useState(null);
@@ -22,9 +23,17 @@ const Posts = () => {
     {
       label: "Actions",
       content: (item) => (
-        <button className="btn btn-danger" onClick={() => handleDelete(item)}>
-          Delete
-        </button>
+        <>
+          <button
+            className="btn btn-danger m-2"
+            onClick={() => handleDelete(item)}
+          >
+            Delete
+          </button>
+          <Link className="btn btn-primary" to={`/posts/${item.id}`}>
+            View Post
+          </Link>
+        </>
       ),
     },
   ];
