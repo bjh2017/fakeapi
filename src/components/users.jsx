@@ -1,21 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Spinner from "./common/spinner";
 import Table from "./common/table";
 import Pagination from "./common/pagination";
 import { Link } from "react-router-dom";
 import UserForm from "./userForm";
 import { toast } from "react-toastify";
+import useFetch from "../hooks/useFetch";
 
 const Users = () => {
-  const [users, setUsers] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
   const [paginatedData, setPaginatedData] = useState([]);
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((json) => setUsers(json));
-  }, []);
+  const { data: users, setData: setUsers } = useFetch("/users");
 
   const columns = [
     { path: "id", label: "ID" },

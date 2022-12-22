@@ -1,19 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Spinner from "./common/spinner";
 import Table from "./common/table";
 import Pagination from "./common/pagination";
 import _ from "lodash";
 import { Link } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 
 const Posts = () => {
-  const [posts, setPosts] = useState(null);
+  const { data: posts, setData: setPosts } = useFetch("/posts");
   const [paginatedData, setPaginatedData] = useState([]);
-
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
-      .then((json) => setPosts(json));
-  }, []);
 
   const columns = [
     { path: "id", label: "ID" },
