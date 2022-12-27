@@ -52,19 +52,7 @@ const Navbar = () => {
         </div>
         <ul className="navbar-nav d-flex">
           <li className="nav-item">
-            <Link className={"nav-link"}>{user.username}</Link>
-          </li>
-          <li className="nav-item">
-            <Link className={"nav-link"} onClick={logout}>
-              Logout
-            </Link>
-          </li>
-        </ul>
-        <ul className="navbar-nav d-flex">
-          <li className="nav-item">
-            <Link className="nav-link" onClick={logout}>
-              {user.username}
-            </Link>
+            <Link className="nav-link">{user.username}</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" onClick={logout}>
