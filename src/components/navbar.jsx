@@ -1,7 +1,13 @@
+import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+import AuthContext from "../context/authContext";
 
 const Navbar = () => {
   const { pathname } = useLocation();
+
+  const { user, logout } = useContext(AuthContext);
+
+  if (!user) return null;
 
   const links = [
     { to: "/", label: "Home" },
@@ -31,7 +37,7 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             {links.map((link) => (
-              <li className="nav-item">
+              <li className="nav-item" key={link.label}>
                 <Link
                   className={
                     pathname === link.to ? "nav-link active" : "nav-link"
@@ -44,6 +50,28 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
+        <ul className="navbar-nav d-flex">
+          <li className="nav-item">
+            <Link className={"nav-link"}>{user.username}</Link>
+          </li>
+          <li className="nav-item">
+            <Link className={"nav-link"} onClick={logout}>
+              Logout
+            </Link>
+          </li>
+        </ul>
+        <ul className="navbar-nav d-flex">
+          <li className="nav-item">
+            <Link className="nav-link" onClick={logout}>
+              {user.username}
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" onClick={logout}>
+              Logout
+            </Link>
+          </li>
+        </ul>
       </div>
     </nav>
   );
